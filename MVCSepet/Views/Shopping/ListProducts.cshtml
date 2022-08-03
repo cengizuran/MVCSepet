@@ -1,0 +1,29 @@
+﻿@model ShoppingVM
+@{
+    ViewBag.Title = "ListProducts";
+}
+
+<h2>@TempData["mesaj"]</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Ürün İsmi</th>
+            <th>Ürün Fiyatı</th>
+            <th>Ürün Stok</th>
+            <th>@Html.ActionLink("CartPage", "CartPage", null, new {@class="btn btn-success"})</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Product item in Model.Products)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.UnitsInStock</td>
+                <td>@Html.ActionLink("SepeteAt", "AddToCart", new { id = item.ProductID }, new {@class="btn btn-primary"})</td>
+            </tr>
+        }
+    </tbody>
+</table>
